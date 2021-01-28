@@ -13,7 +13,10 @@ namespace ConsoleApp1
             {
                 string guess = Console.ReadLine();
 
-                Rule numrule = new NumericRule(new DigitsRule(new MatchRule(new GameRule(null))));
+                Rule numrule = new NumericRule().ChainRule(new DigitsRule())
+                                                .ChainRule(new MatchRule())
+                                                .ChainRule(new GameRule());
+
                 string err = numrule.Apply(secret, guess);
                 if(!string.IsNullOrEmpty(err))
                 {

@@ -7,15 +7,20 @@ namespace ConsoleApp1
     // Chain of Responsibility
     abstract class Rule
     {
-        Rule nextRule;
+        private Rule nextRule;
         protected string info;
 
-        public Rule(Rule next)
+        public Rule()
         {
-            this.nextRule = next;
         }
 
         abstract public bool CanApply(string secret, string guess);
+
+        public Rule ChainRule(Rule next)
+        {
+            this.nextRule = next;
+            return next;
+        }
 
         public string Apply(string secret, string guess)
         {
@@ -27,7 +32,7 @@ namespace ConsoleApp1
 
     class NumericRule : Rule
     {
-        public NumericRule(Rule next) : base(next) 
+        public NumericRule() : base()
         {
             base.info = "数字を入力してください";
         }
@@ -40,7 +45,7 @@ namespace ConsoleApp1
 
     class DigitsRule : Rule
     {
-        public DigitsRule(Rule next) : base(next) { }
+        public DigitsRule() : base() { }
 
         public override bool CanApply(string secret, string guess)
         {
@@ -51,7 +56,7 @@ namespace ConsoleApp1
 
     class MatchRule : Rule
     {
-        public MatchRule(Rule next) : base(next) 
+        public MatchRule() : base() 
         {
             base.info = "Bingo!!!";
         }
@@ -65,7 +70,7 @@ namespace ConsoleApp1
 
     class GameRule : Rule
     {
-        public GameRule(Rule next) : base(next) { }
+        public GameRule() : base() { }
 
         public override bool CanApply(string secret, string guess)
         {
