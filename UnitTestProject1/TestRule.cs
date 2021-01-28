@@ -89,7 +89,7 @@ namespace UnitTestProject1
             Rule rule = new MatchRule();
 
             var res = rule.Apply(fixedSecret(fixedSecretNo));
-            Assert.IsFalse(string.IsNullOrEmpty(res.Info));
+            Assert.AreEqual($"Bingo!!! ê≥âÇÕ {fixedSecretNo} Ç≈ÇµÇΩÅB\r\n", res.Info);
         }
 
         [TestMethod]

@@ -19,7 +19,10 @@ namespace ConsoleApp1
             while (!canceled)
             {
                 var input = Console.ReadLine();
-                Console.WriteLine(game.Guess(input));
+                var result = game.Guess(input);
+                Console.WriteLine(result.Item1);
+
+                if (result.Item2) break;
             }
 
             Console.WriteLine("キー入力で終了");

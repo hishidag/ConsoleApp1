@@ -20,10 +20,10 @@ namespace ConsoleApp1
             secret = "1234";
         }
 
-        public string Guess(string guess)
+        public (string, bool) Guess(string guess)
         {
             RuleResponse response = rules.Apply(new RuleRequest(secret, guess));
-            return response.Info ?? "";
+            return (response.Info ?? "", response.Cleared);
         }
 
     }

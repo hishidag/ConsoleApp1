@@ -64,7 +64,7 @@ namespace ConsoleApp1
     public class MatchRule : Rule
     {
 
-        const string info = "Bingo!!!";
+        string info = "Bingo!!!";
 
         public MatchRule() : base() { }
 
@@ -75,7 +75,11 @@ namespace ConsoleApp1
 
         protected override RuleResponse MakeRuleResponse(RuleRequest request)
         {
-            return new RuleResponse(info);
+            info = $"Bingo!!! 正解は {request.Secret} でした。\r\n";
+            var response = new RuleResponse(info);
+            response.Cleared = true;
+
+            return response;
         }
     }
 
