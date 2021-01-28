@@ -38,4 +38,15 @@ namespace ConsoleApp1
         }
     }
 
+    class DigitsRule : Rule
+    {
+        public DigitsRule(Rule next) : base(next) { }
+
+        public override bool CanApply(string secret, string guess)
+        {
+            base.info = $"シークレットは{secret.Length}桁です";
+            return secret.Length != guess.Length;
+        }
+    }
+
 }

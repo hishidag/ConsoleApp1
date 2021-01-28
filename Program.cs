@@ -13,17 +13,11 @@ namespace ConsoleApp1
             {
                 string guess = Console.ReadLine();
 
-                Rule numrule = new NumericRule(null);
+                Rule numrule = new NumericRule(new DigitsRule(null));
                 string err = numrule.Apply(secret, guess);
                 if(!string.IsNullOrEmpty(err))
                 {
                     Console.WriteLine(err);
-                    continue;
-                }
-
-                if (secret.Length != guess.Length)
-                {
-                    Console.WriteLine($"シークレットは{secret.Length}桁です");
                     continue;
                 }
 
