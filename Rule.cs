@@ -20,7 +20,7 @@ namespace ConsoleApp1
         public string Apply(string secret, string guess)
         {
             if (CanApply(secret, guess)) return info;
-            return nextRule.Apply(secret, guess);
+            return nextRule?.Apply(secret, guess);
         }
 
     }

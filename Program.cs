@@ -13,9 +13,11 @@ namespace ConsoleApp1
             {
                 string guess = Console.ReadLine();
 
-                if(!int.TryParse(guess, out int _))
+                Rule numrule = new NumericRule(null);
+                string err = numrule.Apply(secret, guess);
+                if(!string.IsNullOrEmpty(err))
                 {
-                    Console.WriteLine("数字を入力してください");
+                    Console.WriteLine(err);
                     continue;
                 }
 
