@@ -1,55 +1,5 @@
-﻿using System;
-using System.Diagnostics.Contracts;
-
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
-
-    public class RuleRequest
-    {
-        public string Secret { get; private set; }
-        public string Guess { get; private set; }
-
-        public RuleRequest(string secret, string guess)
-        {
-            Secret = secret;
-            Guess = guess;
-        }
-
-    }
-
-    public class RuleResponse
-    {
-        private string _info;
-
-        public string Info { 
-            get
-            {
-                Contract.Requires<NotSetInfoException>(_info != null, "レスポンスが処理されていません。");
-                return _info; 
-            }
-            private set => _info = value ; 
-        }
-
-        public RuleResponse(string info)
-        {
-            Info = info;
-        }
-    }
-
-    public class NotSetInfoException : Exception
-    {
-        public NotSetInfoException() { }
-
-        public NotSetInfoException(string message) : base(message) { }
-
-        public NotSetInfoException(string message, Exception inner) : base(message, inner) { }
-
-        protected NotSetInfoException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
-    }
-
-
     // Chain of Responsibility
     abstract class Rule
     {
