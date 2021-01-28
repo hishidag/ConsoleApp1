@@ -1,20 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleApp1
 {
+
+    class RuleRequest
+    {
+        public string Secret { get; private set; }
+        public string Guess { get; private set; }
+
+        public RuleRequest(string secret, string guess)
+        {
+            Secret = secret;
+            Guess = guess;
+        }
+
+    }
+
+    class RuleResponse
+    {
+        private string _info;
+
+        public string Info { 
+            get
+            {
+                System.Diagnostics.Contracts.Contract.Requires(_info != null);
+                return _info; 
+            }
+            private set => _info = value ; 
+        }
+
+        public RuleResponse(string info)
+        {
+            Info = info;
+        }
+    }
+
     // Chain of Responsibility
     abstract class Rule
     {
         private Rule nextRule;
         protected string info;
 
-        public Rule()
-        {
-        }
+        public Rule() { }
 
-        abstract public bool CanApply(string secret, string guess);
+        abstract protected bool CanApply(RuleRequest request);
 
         public Rule ChainRule(Rule next)
         {
@@ -22,10 +51,10 @@ namespace ConsoleApp1
             return next;
         }
 
-        public string Apply(string secret, string guess)
+        public RuleResponse Apply(RuleRequest request)
         {
-            if (CanApply(secret, guess)) return info;
-            return nextRule?.Apply(secret, guess);
+            if (CanApply(request)) return new RuleResponse(info);
+            return nextRule?.Apply(request);
         }
 
     }
@@ -37,9 +66,9 @@ namespace ConsoleApp1
             base.info = "数字を入力してください";
         }
 
-        public override bool CanApply(string secret, string guess)
+        protected override bool CanApply(RuleRequest request)
         {
-            return !int.TryParse(guess, out int _);
+            return !int.TryParse(request.Guess, out int _);
         }
     }
 
@@ -47,10 +76,10 @@ namespace ConsoleApp1
     {
         public DigitsRule() : base() { }
 
-        public override bool CanApply(string secret, string guess)
+        protected override bool CanApply(RuleRequest request)
         {
-            base.info = $"シークレットは{secret.Length}桁です";
-            return secret.Length != guess.Length;
+            base.info = $"シークレットは{request.Secret.Length}桁です";
+            return request.Secret.Length != request.Guess.Length;
         }
     }
 
@@ -61,9 +90,9 @@ namespace ConsoleApp1
             base.info = "Bingo!!!";
         }
 
-        public override bool CanApply(string secret, string guess)
+        protected override bool CanApply(RuleRequest request)
         {
-            return secret.Equals(guess);
+            return request.Secret.Equals(request.Guess);
         }
 
     }
@@ -72,18 +101,18 @@ namespace ConsoleApp1
     {
         public GameRule() : base() { }
 
-        public override bool CanApply(string secret, string guess)
+        protected override bool CanApply(RuleRequest request)
         {
             int bulls = 0, cows = 0;
             int[] count = new int[10];
 
-            for (int i = 0; i < secret.Length; i++)
+            for (int i = 0; i < request.Secret.Length; i++)
             {
-                if (secret[i] == guess[i]) bulls++;
+                if (request.Secret[i] == request.Guess[i]) bulls++;
                 else
                 {
-                    if (count[secret[i] - '0']++ < 0) cows++;
-                    if (count[guess[i] - '0']-- > 0) cows++;
+                    if (count[request.Secret[i] - '0']++ < 0) cows++;
+                    if (count[request.Guess[i] - '0']-- > 0) cows++;
                 }
             }
 

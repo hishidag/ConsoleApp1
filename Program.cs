@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -13,14 +12,12 @@ namespace ConsoleApp1
             {
                 string guess = Console.ReadLine();
 
-                Rule numrule = new NumericRule().ChainRule(new DigitsRule())
-                                                .ChainRule(new MatchRule())
-                                                .ChainRule(new GameRule());
+                Rule rules = RuleBuilder.GetRule();
 
-                string err = numrule.Apply(secret, guess);
-                if(!string.IsNullOrEmpty(err))
+                RuleResponse err = rules.Apply(new RuleRequest(secret, guess));
+                if(!string.IsNullOrEmpty(err.Info))
                 {
-                    Console.WriteLine(err);
+                    Console.WriteLine(err.Info);
                     continue;
                 }
 
