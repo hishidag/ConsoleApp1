@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -13,20 +12,15 @@ namespace ConsoleApp1
             {
                 string guess = Console.ReadLine();
 
-                int bulls = 0, cows = 0;
-                int[] count = new int[10];
+                Rule rules = RuleBuilder.GetRule();
 
-                for (int i = 0; i < secret.Length; i++)
+                RuleResponse err = rules.Apply(new RuleRequest(secret, guess));
+                if(!string.IsNullOrEmpty(err.Info))
                 {
-                    if (secret[i] == guess[i]) bulls++;
-                    else
-                    {
-                        if (count[secret[i] - '0']++ < 0) cows++;
-                        if (count[guess[i] - '0']-- > 0) cows++;
-                    }
+                    Console.WriteLine(err.Info);
+                    continue;
                 }
 
-                Console.WriteLine($"{bulls}A{cows}B");
             }
 
         }
