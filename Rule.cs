@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace ConsoleApp1
 {
@@ -23,7 +24,7 @@ namespace ConsoleApp1
         public string Info { 
             get
             {
-                System.Diagnostics.Contracts.Contract.Requires(_info != null);
+                Contract.Requires<NotSetInfoException>(_info != null, "レスポンスが処理されていません。");
                 return _info; 
             }
             private set => _info = value ; 
@@ -34,6 +35,20 @@ namespace ConsoleApp1
             Info = info;
         }
     }
+
+    public class NotSetInfoException : Exception
+    {
+        public NotSetInfoException() { }
+
+        public NotSetInfoException(string message) : base(message) { }
+
+        public NotSetInfoException(string message, Exception inner) : base(message, inner) { }
+
+        protected NotSetInfoException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    }
+
 
     // Chain of Responsibility
     abstract class Rule
