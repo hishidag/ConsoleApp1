@@ -63,6 +63,29 @@ namespace ConsoleApp1
 
     }
 
+    class GameRule : Rule
+    {
+        public GameRule(Rule next) : base(next) { }
 
+        public override bool CanApply(string secret, string guess)
+        {
+            int bulls = 0, cows = 0;
+            int[] count = new int[10];
+
+            for (int i = 0; i < secret.Length; i++)
+            {
+                if (secret[i] == guess[i]) bulls++;
+                else
+                {
+                    if (count[secret[i] - '0']++ < 0) cows++;
+                    if (count[guess[i] - '0']-- > 0) cows++;
+                }
+            }
+
+            base.info = $"{bulls}A{cows}B";
+
+            return true;
+        }
+    }
 
 }
