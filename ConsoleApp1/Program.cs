@@ -6,23 +6,30 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string secret = "1234";
+            bool canceled = false;
 
-            while (true)
+            Console.CancelKeyPress += new ConsoleCancelEventHandler((obj, args) => 
             {
-                string guess = Console.ReadLine();
+                canceled = true;
+                args.Cancel = true;
+            });
+            
+            var game = new Game();
 
-                Rule rules = RuleBuilder.GetRule();
-
-                RuleResponse err = rules.Apply(new RuleRequest(secret, guess));
-                if(!string.IsNullOrEmpty(err.Info))
-                {
-                    Console.WriteLine(err.Info);
-                    continue;
-                }
-
+            while (!canceled)
+            {
+                var input = Console.ReadLine();
+                Console.WriteLine(game.Guess(input));
             }
 
+            Console.WriteLine("キー入力で終了");
+
+            Console.ReadLine();
+        }
+
+        private static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
