@@ -49,4 +49,20 @@ namespace ConsoleApp1
         }
     }
 
+    class MatchRule : Rule
+    {
+        public MatchRule(Rule next) : base(next) 
+        {
+            base.info = "Bingo!!!";
+        }
+
+        public override bool CanApply(string secret, string guess)
+        {
+            return secret.Equals(guess);
+        }
+
+    }
+
+
+
 }

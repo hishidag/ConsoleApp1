@@ -13,17 +13,11 @@ namespace ConsoleApp1
             {
                 string guess = Console.ReadLine();
 
-                Rule numrule = new NumericRule(new DigitsRule(null));
+                Rule numrule = new NumericRule(new DigitsRule(new MatchRule(null)));
                 string err = numrule.Apply(secret, guess);
                 if(!string.IsNullOrEmpty(err))
                 {
                     Console.WriteLine(err);
-                    continue;
-                }
-
-                if (secret.Equals(guess))
-                {
-                    Console.WriteLine("Bingo!!!");
                     continue;
                 }
 
