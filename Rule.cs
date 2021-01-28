@@ -15,16 +15,27 @@ namespace ConsoleApp1
             this.nextRule = next;
         }
 
-        abstract public bool CanApply();
+        abstract public bool CanApply(string secret, string guess);
 
-        public string Apply()
+        public string Apply(string secret, string guess)
         {
-            if (CanApply()) return info;
-            return nextRule.Apply();
+            if (CanApply(secret, guess)) return info;
+            return nextRule.Apply(secret, guess);
         }
 
     }
 
+    class NumericRule : Rule
+    {
+        public NumericRule(Rule next) : base(next) 
+        {
+            base.info = "数字を入力してください";
+        }
 
+        public override bool CanApply(string secret, string guess)
+        {
+            return !int.TryParse(guess, out int _);
+        }
+    }
 
 }
