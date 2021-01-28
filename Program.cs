@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -6,7 +7,29 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string secret = "1234";
+
+            while (true)
+            {
+                string guess = Console.ReadLine();
+
+                int bulls = 0, cows = 0;
+                int[] count = new int[10];
+
+                for (int i = 0; i < secret.Length; i++)
+                {
+                    if (secret[i] == guess[i]) bulls++;
+                    else
+                    {
+                        if (count[secret[i] - '0']++ < 0) cows++;
+                        if (count[guess[i] - '0']-- > 0) cows++;
+                    }
+                }
+
+                Console.WriteLine($"{bulls}A{cows}B");
+            }
+
         }
     }
 }
+
