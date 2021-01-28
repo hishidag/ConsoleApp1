@@ -4,7 +4,7 @@ using System.Diagnostics.Contracts;
 namespace ConsoleApp1
 {
 
-    class RuleRequest
+    public class RuleRequest
     {
         public string Secret { get; private set; }
         public string Guess { get; private set; }
@@ -17,7 +17,7 @@ namespace ConsoleApp1
 
     }
 
-    class RuleResponse
+    public class RuleResponse
     {
         private string _info;
 
