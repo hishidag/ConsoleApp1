@@ -8,26 +8,37 @@ namespace ConsoleApp1
         {
             bool canceled = false;
 
-            Console.CancelKeyPress += new ConsoleCancelEventHandler((obj, args) => 
-            {
-                canceled = true;
-                args.Cancel = true;
-            });
-            
+            Console.WriteLine("ようこそ");
+
             var game = new Game();
 
             while (!canceled)
-            {
+            {                
                 var input = Console.ReadLine();
+
+                if (input is null) break;
+
                 var result = game.Guess(input);
                 Console.WriteLine(result.Item1);
-
-                if (result.Item2) break;
+                
+                if (result.Item2) 
+                {
+                    Console.WriteLine("yを押下すると新しいゲームを開始します。");
+                    if ("y".Equals(Console.ReadLine()))
+                    {
+                        game.Start();
+                        Console.WriteLine("ようこそ");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                };
             }
 
             Console.WriteLine("キー入力で終了");
 
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         private static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)

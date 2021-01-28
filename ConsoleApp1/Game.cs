@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
@@ -17,13 +14,23 @@ namespace ConsoleApp1
 
         public void Start()
         {
-            secret = "1234";
+            secret = "1234";// NewSecretString();
         }
 
         public (string, bool) Guess(string guess)
         {
             RuleResponse response = rules.Apply(new RuleRequest(secret, guess));
             return (response.Info ?? "", response.Cleared);
+        }
+
+        private string NewSecretString()
+        {
+            return NewSecretNumber().ToString().PadLeft(4, '0');
+        }
+
+        private int NewSecretNumber()
+        {
+            return new Random().Next(0, (int)Math.Pow(10,4));
         }
 
     }
