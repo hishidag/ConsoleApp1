@@ -1,5 +1,5 @@
 ﻿using System;
-using BullsAndCows;
+using BullsAndCowsGame;
 
 namespace ConsoleApp1
 {

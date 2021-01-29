@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BullsAndCows
+namespace BullsAndCowsGame
 {
     public class Game
     {
@@ -16,7 +16,7 @@ namespace BullsAndCows
 
         public void Start()
         {
-            secret = "1234";// NewSecretString();
+            secret = OfferSecret.Secret;
         }
 
         public (string, bool) Guess(string guess)
@@ -25,29 +25,9 @@ namespace BullsAndCows
             return (response.Info ?? "", response.Cleared);
         }
 
-        private string NewSecretString()
+        public void ChangeSecretStrategy(GameStrategy strategy)
         {
-            return NewSecretNumber().ToString().PadLeft(4, '0');
-        }
-
-        private int NewSecretNumber()
-        {
-            return new Random().Next(0, (int)Math.Pow(10,4));
-        }
-
-        private int NewDistinctSecretNumber()
-        {
-            int num = 0;
-            List<int> numlist = Enumerable.Range(0, 10).ToList();
-
-            while(numlist.Count > 0)
-            {
-                int takeIndex = new Random().Next(0, numlist.Count);
-                num = 10 * num + numlist[takeIndex];
-                numlist.RemoveAt(takeIndex);
-            }
-
-            return num;
+            OfferSecret.ChangeStrategy(strategy);
         }
 
     }

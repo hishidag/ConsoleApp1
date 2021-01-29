@@ -1,4 +1,4 @@
-﻿namespace BullsAndCows
+﻿namespace BullsAndCowsGame
 {
     public class RuleRequest
     {

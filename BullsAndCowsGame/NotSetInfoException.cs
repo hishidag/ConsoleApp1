@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BullsAndCows
+namespace BullsAndCowsGame
 {
     public class NotSetInfoException : Exception
     {

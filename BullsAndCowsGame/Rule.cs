@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BullsAndCows
+namespace BullsAndCowsGame
 {
     // Chain of Responsibility
     public abstract class Rule
