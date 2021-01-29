@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleApp1
+namespace BullsAndCows
 {
     // Chain of Responsibility
     public abstract class Rule
@@ -22,7 +22,7 @@ namespace ConsoleApp1
         public RuleResponse Apply(RuleRequest request)
         {
             if (CanApply(request)) return MakeRuleResponse(request);
-            else if (!(nextRule is null)) return nextRule!.Apply(request);
+            else if (!(nextRule is null)) return nextRule.Apply(request);
             else throw new NotImplementedException("");
         }
 

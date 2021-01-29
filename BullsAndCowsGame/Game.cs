@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ConsoleApp1
+namespace BullsAndCows
 {
-    class Game
+    public class Game
     {
         string secret;
         readonly Rule rules = RuleBuilder.GetRule();

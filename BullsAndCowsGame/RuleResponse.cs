@@ -1,5 +1,5 @@
 ﻿
-namespace ConsoleApp1
+namespace BullsAndCows
 {
     public class RuleResponse
     {

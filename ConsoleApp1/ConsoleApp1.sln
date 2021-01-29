@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1.csproj", "{7D629029-B31A-4C66-8900-E0540BA21180}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "..\UnitTestProject1\UnitTestProject1.csproj", "{85D129C6-3DB6-440F-934C-7E6060E283BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProject1", "..\UnitTestProject1\UnitTestProject1.csproj", "{85D129C6-3DB6-440F-934C-7E6060E283BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BullsAndCowsGame", "..\BullsAndCowsGame\BullsAndCowsGame.csproj", "{94D10787-EDF9-41FC-87F9-2406BE6AA31C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{85D129C6-3DB6-440F-934C-7E6060E283BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85D129C6-3DB6-440F-934C-7E6060E283BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85D129C6-3DB6-440F-934C-7E6060E283BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94D10787-EDF9-41FC-87F9-2406BE6AA31C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94D10787-EDF9-41FC-87F9-2406BE6AA31C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94D10787-EDF9-41FC-87F9-2406BE6AA31C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94D10787-EDF9-41FC-87F9-2406BE6AA31C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

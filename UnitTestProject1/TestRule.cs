@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ConsoleApp1;
 using System;
+using BullsAndCows;
 
 namespace UnitTestProject1
 {

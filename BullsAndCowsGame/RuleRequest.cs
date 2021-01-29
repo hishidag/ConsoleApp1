@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1
+﻿namespace BullsAndCows
 {
     public class RuleRequest
     {

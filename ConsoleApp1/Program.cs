@@ -1,4 +1,5 @@
 ﻿using System;
+using BullsAndCows;
 
 namespace ConsoleApp1
 {
