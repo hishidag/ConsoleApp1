@@ -6,16 +6,21 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            bool canceled = false;
+            Console.CancelKeyPress += new ConsoleCancelEventHandler((obj, args) =>
+            {
+                // Ctrl + C でエレガントにプログラムを終了させる
+                args.Cancel = true;
+            });
 
             Console.WriteLine("ようこそ");
 
             var game = new Game();
 
-            while (!canceled)
+            while (true)
             {                
                 var input = Console.ReadLine();
 
+                // Ctrl + C のとき null が入力された扱いになる
                 if (input is null) break;
 
                 var result = game.Guess(input);
@@ -41,10 +46,6 @@ namespace ConsoleApp1
             Console.ReadKey();
         }
 
-        private static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 
